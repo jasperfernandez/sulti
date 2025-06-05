@@ -13,5 +13,9 @@ Route::get('dashboard', function() {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('chats/{id?}', function(?int $id = null) {
+    return Inertia::render('chats/Index');
+})->middleware(['auth', 'verified'])->name('chats.index');
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
