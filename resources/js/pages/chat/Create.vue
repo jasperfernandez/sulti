@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import ChatLayout from '@/layouts/ChatLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import NewChatHeader from '@/components/chat/NewChatHeader.vue';
+import ChatInput from '@/components/chat/ChatInput.vue';
+import NewChatContent from '@/components/chat/NewChatContent.vue';
 </script>
 
 <template>
@@ -11,9 +13,8 @@ import NewChatHeader from '@/components/chat/NewChatHeader.vue';
     <ChatLayout>
         <Card class="h-full gap-2 pt-0">
             <NewChatHeader />
-            <CardContent>
-
-            </CardContent>
+            <NewChatContent />
+            <ChatInput />
         </Card>
     </ChatLayout>
 </template>
