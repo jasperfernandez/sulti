@@ -1,6 +1,7 @@
 import type { PageProps } from '@inertiajs/core';
 import type { LucideIcon } from 'lucide-vue-next';
 import type { Config } from 'ziggy-js';
+import type { Reactive } from 'vue';
 
 export interface Auth {
     user: User;
@@ -37,3 +38,9 @@ export interface User {
 }
 
 export type BreadcrumbItemType = BreadcrumbItem;
+
+export type ComposeUserListProvider = {
+    users: Reactive<User[]>;
+    addUser: (user: User) => void;
+    removeUser: (userId: number) => void;
+}
