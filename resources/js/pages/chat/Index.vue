@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ChatInput from '@/components/chat/ChatInput.vue';
-import ChatOpenHeader from '@/components/chat/ChatOpenHeader.vue';
-import ChatOpenThread from '@/components/chat/ChatOpenThread.vue';
+import ChatHeader from '@/components/chat/ChatHeader.vue';
+import ChatThread from '@/components/chat/ChatThread.vue';
 import { Card } from '@/components/ui/card';
 import ChatLayout from '@/layouts/ChatLayout.vue';
 import { User } from '@/types';
@@ -18,9 +18,9 @@ const user: User = {
 
 <template>
     <ChatLayout>
-        <Card class="flex-1 flex gap-2 pt-0">
-            <ChatOpenHeader :user="user" />
-            <ChatOpenThread />
+        <Card class="h-full gap-2 pt-0">
+            <ChatHeader :user="user" />
+            <ChatThread />
             <ChatInput />
         </Card>
     </ChatLayout>
