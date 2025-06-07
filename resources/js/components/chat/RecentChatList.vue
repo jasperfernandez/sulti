@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Card, CardContent } from '@/components/ui/card';
-import ChatItem from '@/components/chat/ChatItem.vue';
+import RecentChatItem from '@/components/chat/RecentChatItem.vue';
 import { User } from '@/types';
-import ChatListHeader from '@/components/chat/ChatListHeader.vue';
+import RecentChatListHeader from '@/components/chat/RecentChatListHeader.vue';
 import type { HTMLAttributes } from 'vue';
 import { cn } from '@/lib/utils';
 
@@ -22,10 +22,10 @@ const user: User = {
 
 <template>
     <Card :class="cn('pt-4 pb-0 gap-2', props.class)">
-        <ChatListHeader />
+        <RecentChatListHeader />
         <CardContent class="px-2 overflow-y-auto">
-            <ChatItem
-                v-for="i in 8"
+            <RecentChatItem
+                v-for="i in 4"
                 :key="i"
                 :user="user"
                 latest-message="Yow"

@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import ChatSide from '@/components/chat/ChatSide.vue';
+import { provideComposeUserList } from '@/providers/composeUserList';
+
+provideComposeUserList();
 </script>
 
 <template>
-    <div class="flex w-full h-screen p-4 gap-4 overflow-hidden">
-        <ChatSide class="w-full max-w-sm h-full" />
-        <slot />
+    <div class="flex h-screen w-full gap-4 overflow-hidden p-4">
+        <ChatSide class="h-full w-full max-w-sm" />
+
+        <div class="flex-1">
+            <slot />
+        </div>
     </div>
 </template>

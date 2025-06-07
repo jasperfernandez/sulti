@@ -7,14 +7,14 @@ interface Props {
     user: User;
     latestMessage: string;
     timeStamp: string;
-    hasUnreadMessage: boolean;
+    hasUnreadMessage?: boolean;
 }
 
 defineProps<Props>();
 </script>
 
 <template>
-    <div class="px-4 rounded-lg flex min-h-20 w-full items-center gap-2 hover:bg-background">
+    <div class="px-4 rounded-lg flex min-h-20 w-full items-center gap-2 hover:bg-secondary dark:hover:bg-background">
         <Avatar class="size-12 overflow-hidden rounded-full">
             <AvatarImage v-if="user.avatar" :src="user.avatar" :alt="user.name" />
             <AvatarFallback class="rounded-lg bg-neutral-200 font-semibold text-black dark:bg-neutral-700 dark:text-white">

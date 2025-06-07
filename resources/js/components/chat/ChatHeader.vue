@@ -13,7 +13,7 @@ defineProps<Props>();
 
 <template>
     <CardHeader class="p-0">
-        <div class="p-4 flex items-center gap-2 border-b-1 border-b-border">
+        <div class="p-4 flex items-center gap-2 border-b-1 border-b-border min-h-20">
             <Avatar class="size-10 overflow-hidden rounded-full">
                 <AvatarImage v-if="user.avatar" :src="user.avatar" :alt="user.name" />
                 <AvatarFallback class="rounded-lg bg-neutral-200 font-semibold text-black dark:bg-neutral-700 dark:text-white">
