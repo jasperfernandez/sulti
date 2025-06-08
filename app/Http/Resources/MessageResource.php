@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources;
 
 use App\Models\Message;
@@ -8,6 +10,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @mixin Message
+ *
  * @property string sent_at
  */
 final class MessageResource extends JsonResource

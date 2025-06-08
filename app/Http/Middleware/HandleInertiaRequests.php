@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
+use App\Actions\GetRecentChats;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
-use App\Actions\GetRecentChats;
 
 final class HandleInertiaRequests extends Middleware
 {
