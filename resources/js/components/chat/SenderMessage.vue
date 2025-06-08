@@ -3,7 +3,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 
 interface Props {
     message: string;
-    timestamp: string;
+    sentAt: string;
 }
 
 defineProps<Props>();
@@ -19,7 +19,7 @@ defineProps<Props>();
                     </div>
                 </TooltipTrigger>
                 <TooltipContent side="bottom" align="center">
-                    <p>{{ timestamp }}</p>
+                    <p>{{ sentAt }}</p>
                 </TooltipContent>
             </Tooltip>
         </TooltipProvider>

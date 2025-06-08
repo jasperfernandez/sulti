@@ -7,7 +7,7 @@ import { User } from '@/types';
 interface Props {
     user: User;
     message: string;
-    timestamp: string;
+    sentAt: string;
 }
 
 defineProps<Props>();
@@ -32,7 +32,7 @@ defineProps<Props>();
                     </div>
                 </TooltipTrigger>
                 <TooltipContent side="bottom" align="center">
-                    <p>{{ timestamp }}</p>
+                    <p>{{ sentAt }}</p>
                 </TooltipContent>
             </Tooltip>
         </TooltipProvider>
