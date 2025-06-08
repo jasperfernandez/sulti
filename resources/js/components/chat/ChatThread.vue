@@ -2,35 +2,34 @@
 import ReceiverMessage from '@/components/chat/ReceiverMessage.vue';
 import SenderMessage from '@/components/chat/SenderMessage.vue';
 import { CardContent } from '@/components/ui/card';
-import { User } from '@/types';
+import { Message, SharedData } from '@/types';
+import { usePage } from '@inertiajs/vue3';
 
-const user: User = {
-    id: 1,
-    name: 'John Doe',
-    email: 'jd@mail.com',
-    email_verified_at: '2023-01-01T00:00:00Z',
-    created_at: '2023-01-01T00:00:00Z',
-    updated_at: '2023-01-01T00:00:00Z',
+interface Props {
+    messages: Message[];
 }
+
+defineProps<Props>();
+
+
+const page = usePage<SharedData>();
+const user = page.props.auth.user;
 </script>
 
 <template>
     <CardContent class="flex-1 overflow-y-auto">
-        <SenderMessage message="Hello" timestamp="6:21 PM" />
-        <ReceiverMessage :user="user" message="Hello stupid" timestamp="6:22 PM" />
-        <SenderMessage message="Hello" timestamp="6:21 PM" />
-        <ReceiverMessage :user="user" message="Hello stupid" timestamp="6:22 PM" />
-        <SenderMessage message="Hello" timestamp="6:21 PM" />
-        <ReceiverMessage :user="user" message="Hello stupid" timestamp="6:22 PM" />
-        <SenderMessage message="Hello" timestamp="6:21 PM" />
-        <ReceiverMessage :user="user" message="Hello stupid" timestamp="6:22 PM" />
-        <SenderMessage message="Hello" timestamp="6:21 PM" />
-        <ReceiverMessage :user="user" message="Hello stupid" timestamp="6:22 PM" />
-        <SenderMessage message="Hello" timestamp="6:21 PM" />
-        <ReceiverMessage :user="user" message="Hello stupid" timestamp="6:22 PM" />
-        <SenderMessage message="Hello" timestamp="6:21 PM" />
-        <ReceiverMessage :user="user" message="Hello stupid" timestamp="6:22 PM" />
-        <SenderMessage message="Hello" timestamp="6:21 PM" />
-        <ReceiverMessage :user="user" message="Hello stupid" timestamp="6:22 PM" />
+        <template v-for="message in messages" :key="message.id">
+            <SenderMessage
+                v-if="message.sentBy === user.id"
+                :message="message.content"
+                :sent-at="message.sentAt"
+            />
+            <ReceiverMessage
+                v-else
+                :user="message.sender"
+                :message="message.content"
+                :sent-at="message.sentAt"
+            />
+        </template>
     </CardContent>
 </template>
