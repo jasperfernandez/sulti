@@ -1,23 +1,18 @@
 <script setup lang="ts">
 import { Card, CardContent } from '@/components/ui/card';
 import RecentChatItem from '@/components/chat/RecentChatItem.vue';
-import { User } from '@/types';
+import { SharedData } from '@/types';
 import RecentChatListHeader from '@/components/chat/RecentChatListHeader.vue';
 import type { HTMLAttributes } from 'vue';
 import { cn } from '@/lib/utils';
+import { usePage } from '@inertiajs/vue3';
 
 const props = defineProps<{
     class?: HTMLAttributes['class']
 }>();
 
-const user: User = {
-    id: 1,
-    name: 'John Doe',
-    email: 'jd@mail.com',
-    email_verified_at: '2023-01-01T00:00:00Z',
-    created_at: '2023-01-01T00:00:00Z',
-    updated_at: '2023-01-01T00:00:00Z',
-};
+const page = usePage<SharedData>();
+const recentChats = page.props.recentChats;
 </script>
 
 <template>
@@ -25,12 +20,9 @@ const user: User = {
         <RecentChatListHeader />
         <CardContent class="px-2 overflow-y-auto">
             <RecentChatItem
-                v-for="i in 4"
-                :key="i"
-                :user="user"
-                latest-message="Yow"
-                time-stamp="2h"
-                has-unread-message
+                v-for="rc in recentChats"
+                :key="rc.chatId"
+                :recent-chat="rc"
             />
         </CardContent>
     </Card>

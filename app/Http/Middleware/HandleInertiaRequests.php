@@ -8,6 +8,7 @@ use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
+use App\Actions\GetRecentChats;
 
 final class HandleInertiaRequests extends Middleware
 {
@@ -53,6 +54,7 @@ final class HandleInertiaRequests extends Middleware
                 'location' => $request->url(),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
+            'recentChats' => $request->user() ? (new GetRecentChats())->handle($request->user()->id) : [],
         ];
     }
 }
