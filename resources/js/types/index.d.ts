@@ -25,6 +25,7 @@ export interface SharedData extends PageProps {
     auth: Auth;
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
+    recentChats: RecentChat[];
 }
 
 export interface User {
@@ -32,9 +33,6 @@ export interface User {
     name: string;
     email: string;
     avatar?: string;
-    email_verified_at: string | null;
-    created_at: string;
-    updated_at: string;
 }
 
 export type BreadcrumbItemType = BreadcrumbItem;
@@ -43,4 +41,35 @@ export type ComposeUserListProvider = {
     users: Reactive<User[]>;
     addUser: (user: User) => void;
     removeUser: (userId: number) => void;
+}
+
+type ChatType = 'private' | 'group';
+
+interface Chat {
+    id: number;
+    groupName: string;
+    type: ChatType;
+    createdBy: number;
+    createdAt: string;
+
+    members: User[];
+    messages: Message[];
+}
+
+export type RecentChat = {
+    chatId: number;
+    members: User[];
+    lastMessage: string;
+    lastMessageAt: string;
+    hasUnreadMessage: boolean;
+}
+
+export interface Message {
+    id: number;
+    content: string;
+    chatId: number;
+    sentBy: number;
+    sentAt: string;
+
+    sender: User;
 }
