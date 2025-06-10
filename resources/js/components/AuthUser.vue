@@ -2,16 +2,17 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { getInitials } from '@/composables/useInitials';
+import { cn } from '@/lib/utils';
 import { SharedData, User } from '@/types';
 import { Link, router, usePage } from '@inertiajs/vue3';
 import { LogOut } from 'lucide-vue-next';
 import type { HTMLAttributes } from 'vue';
-import { cn } from '@/lib/utils';
 
 const props = defineProps<{
-    class?: HTMLAttributes['class']
-}>()
+    class?: HTMLAttributes['class'];
+}>();
 
 const page = usePage<SharedData>();
 const user = page.props.auth.user as User;
@@ -31,17 +32,26 @@ const handleLogout = () => {
                 </AvatarFallback>
             </Avatar>
 
-            <div class="flex-1 text-left text-sm flex flex-col">
+            <div class="flex flex-1 flex-col text-left text-sm">
                 <span class="truncate font-medium">{{ user.name }}</span>
                 <span class="text-muted-foreground truncate text-xs">{{ user.email }}</span>
             </div>
         </div>
 
-        <Button size="icon" class="ml-auto">
-            <Link class="w-full flex items-center justify-center" method="post" :href="route('logout')" @click="handleLogout" as="button">
-                <LogOut />
-            </Link>
-        </Button>
+        <TooltipProvider>
+            <Tooltip>
+                <TooltipTrigger as-child>
+                    <Button variant="ghost" size="icon" class="ml-auto" as-child>
+                        <Link class="flex items-center justify-center" method="post" :href="route('logout')" @click="handleLogout" as="button">
+                            <LogOut />
+                        </Link>
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>Log out</p>
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
     </Card>
 </template>
 
